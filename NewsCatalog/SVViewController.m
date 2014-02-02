@@ -26,4 +26,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 20;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *const CellId = @"Cell";
+    static NSString *const CellId2 = @"Cell2";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[indexPath row] % 2 ? CellId : CellId2];
+    
+    [[cell textLabel] setText:@"123"];
+    [[cell detailTextLabel] setText:@"567"];
+    
+    return cell;
+}
+
 @end
