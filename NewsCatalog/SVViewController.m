@@ -7,6 +7,8 @@
 //
 
 #import "SVViewController.h"
+#import "SVImageCell.h"
+#import "SVData.h"
 
 @interface SVViewController ()
 
@@ -17,6 +19,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _data = [SVData fetchData];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -28,18 +32,18 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return [_data count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *const CellId = @"Cell";
-    static NSString *const CellId2 = @"Cell2";
+    static NSString *const imageCellId = @"ImageCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[indexPath row] % 2 ? CellId : CellId2];
+    SVImageCell *cell = [tableView dequeueReusableCellWithIdentifier:imageCellId];
     
-    [[cell textLabel] setText:@"123"];
-    [[cell detailTextLabel] setText:@"567"];
+    SVData *item = [_data objectAtIndex:[indexPath row]];
+    [[cell cellImageView] setImage:[UIImage imageNamed:[item imageName]]];
+    [[cell cellTextLabel] setText:[item title]];
     
     return cell;
 }

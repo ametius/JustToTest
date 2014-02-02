@@ -1,5 +1,5 @@
 //
-//  SVViewController.h
+//  SVImageCell.h
 //  NewsCatalog
 //
 //  Created by Александр Войченко on 02.02.14.
@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SVViewController : UIViewController <UITableViewDataSource>
-{
-    NSArray *_data;
-}
+@interface SVImageCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
+@property (weak, nonatomic) IBOutlet UILabel *cellTextLabel;
 
 @end
